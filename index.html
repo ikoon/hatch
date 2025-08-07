@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.css" /> <!-- swiper css -->
+	<link rel="stylesheet" type="text/css" href="resources/css/common.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/hatch.css?123123">
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.js"></script> <!-- swiper js -->
+
+	<title>해치</title>
+</head>
+
+<body>
+
+    <!-- skip navigation -->
+    <a href="#main-content" class="skip-nav">본문 바로가기</a>
+    <a href="#navigation" class="skip-nav">메뉴 바로가기</a>
+    
+    <!-- main contents -->
+    <main id="main-content" role="main" class="event-container">
+        
+        <!-- visual image -->
+        <header class="event-header">
+            <div class="main-character">
+                <picture class="img">
+                    <source srcset="./resources/images/pc/img_visual.png" media="(min-width: 768px)">
+                    <img src="./resources/images/mo/img_visual.png" alt="해시태그 이벤트 해치즈 기록실 2025 HECHI&SOUL FRIENDS"  class="character-image">
+                </picture>
+            </div>
+        </header>
+        
+        <!-- tab navigation -->
+        <section id="navigation" class="tab-section" aria-labelledby="event-tabs-title">
+            <h2 id="event-tabs-title" class="sr-only">이벤트 탭 메뉴</h2>
+            
+            <!-- tab list-->
+            <div class="tab-list" role="tablist" aria-label="이벤트 종류">
+                <button class="tab-button active" 
+                        role="tab" 
+                        aria-selected="true" 
+                        aria-controls="event1-panel" 
+                        id="event1-tab"
+                        tabindex="0">
+                    <span class="sr-only">EVENT.1 해치포착해치</span>
+                </button>
+                
+                <button class="tab-button" 
+                        role="tab" 
+                        aria-selected="false" 
+                        aria-controls="event2-panel" 
+                        id="event2-tab">
+                    <span class="sr-only">EVENT.2 추억을 담은 해치</span>
+                </button>
+                
+                <button class="tab-button" 
+                        role="tab" 
+                        aria-selected="false" 
+                        aria-controls="event3-panel" 
+                        id="event3-tab">
+                    <span class="sr-only">EVENT.3 숨은 기억을 찾아서</span>
+                </button>
+            </div>
+            
+            <!-- 탭1 컨텐츠 -->
+            <div class="tab-panel active" 
+                 role="tabpanel" 
+                 id="event1-panel" 
+                 aria-labelledby="event1-tab">
+                <div class="liner">
+                    <!-- 이벤트 이미지 -->
+                    <div class="event-content">
+                        <div class="event-item">
+                            <picture class="img">
+                                <source srcset="./resources/images/pc/event1_img1.png" media="(min-width: 768px)">
+                                <img src="./resources/images/mo/event1_img1.png" alt="해치로그 대잔치 이벤트 상품 1" class="event-image">
+                            </picture>
+                            
+                        </div>
+                    </div>
+
+                    <!-- 이미지 섹션 -->
+                    <section class="photo-section" aria-labelledby="photo-title">
+                        <div id="photo-title" class="photo-title">
+                            <span class="counter-label">실시간 누적 참여자 수</span>
+                            <span class="counter-number" aria-live="polite">9,999</span><span class="counter-label">명</span>
+                          </div>
+                        
+                        <div class="sort-photo">
+                            <div class="sort-status">
+                                <picture class="img">
+                                    <source srcset="./resources/images/pc/sort_title.png" media="(min-width: 768px)">
+                                    <img src="./resources/images/mo/sort_title.png" alt="참여현황">
+                                </picture>
+                            </div>
+                            <nav class="sort-options" aria-label="정렬 옵션" role="group">
+                                <button type="button" class="sort-latest" aria-pressed="false">최신순</button> <!-- 활성화 class : on -->
+                                <span class="sort-divider">|</span>
+                                <button type="button" class="sort-like on"  aria-pressed="true">좋아요 순</button>
+                            </nav>
+                        </div>
+                        
+                        <!-- 이미지 리스트-->
+                        <div class="photo-grid" role="grid" aria-label="해치 사진 갤러리">
+                            <article class="photo-card" role="gridcell">
+                                <button class="photo-image-container"onclick="openHatchModal()">
+                                    <img src="./resources/images/mo/sample_photo.png" alt="핑크해치 사진">
+                                </button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 1 좋아요 완료" aria-pressed="true">
+                                        <span class="heart-icon on" aria-label="좋아요 완료" aria-hidden="true"></span> <!-- 버튼 클릭시 on class 추가 -->
+                                        <!-- <span class="heart-icon" aria-hidden="true"></span> -->
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+
+                            <article class="photo-card">
+                                <button class="photo-image-container"onclick="openHatchModal()">
+                                    <img src="./resources/images/mo/sample_photo.png" alt="핑크해치 사진">
+                                </button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 2 좋아요 완료" aria-pressed="true">
+                                        <span class="heart-icon on" aria-label="좋아요 완료" aria-hidden="true"></span>
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+                            
+                            <article class="photo-card">
+                                <button class="photo-image-container"></button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 3 좋아요 하기" aria-pressed="false">
+                                        <span class="heart-icon" aria-hidden="true"></span>
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+                            
+                            <article class="photo-card">
+                                <button class="photo-image-container"></button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 4 좋아요 하기" aria-pressed="false">
+                                        <span class="heart-icon" aria-hidden="true"></span>
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+                            
+                            <article class="photo-card">
+                                <button class="photo-image-container"></button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 5 좋아요 하기" aria-pressed="false">
+                                        <span class="heart-icon" aria-hidden="true"></span>
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+
+                            <article class="photo-card">
+                                <button class="photo-image-container"></button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 6 좋아요 하기" aria-pressed="false">
+                                        <span class="heart-icon" aria-hidden="true"></span>
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+
+                            <article class="photo-card">
+                                <button class="photo-image-container"></button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 7 좋아요 하기" aria-pressed="false">
+                                        <span class="heart-icon" aria-hidden="true"></span>
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+
+                            <article class="photo-card">
+                                <button class="photo-image-container"></button>
+                                <div class="photo-info">
+                                    <button class="like-button" aria-label="해치 8 좋아요 하기" aria-pressed="false">
+                                        <span class="heart-icon" aria-hidden="true"></span>
+                                        <span class="like-count">999</span>
+                                    </button>
+                                    <span class="photo-date" datetime="2025-08-16">08.16</span>
+                                </div>
+                            </article>
+                        </div>
+                        
+                        <!-- 더보기 버튼 -->
+                        <div class="page-container">
+                            <!-- mo: 더보기 버튼 -->
+                            <button type="button" class="btn-load-more" aria-label="View more pictures">
+                                <img src="./resources/images/mo/btn_load_more.png" alt="더보기" />
+                            </button>
+                        
+                            <!-- pc: 페이징 -->
+                            <nav class="pagination" aria-label="페이지 네비게이션">
+                                <ul class="pagination-list">
+                                    <li>
+                                        <!-- 첫 페이지일 때 -->    
+                                        <span href="" aria-label="이전 페이지 없음" aria-disabled="true" class="disabled">
+                                            <span aria-hidden="true">&lt;</span>
+                                        </span>
+                                    </li>
+                                    <li><a href="?page=1" aria-current="page" aria-label="현재 페이지, 1페이지">1</a></li>
+                                    <li><a href="?page=2" aria-label="2페이지로 이동">2</a></li>
+                                    <li><a href="?page=3" aria-label="3페이지로 이동">3</a></li>
+                                    <li><a href="?page=4" aria-label="4페이지로 이동">4</a></li>
+                                    <li><a href="?page=5" aria-label="5페이지로 이동">5</a></li>
+                                    <li><a href="?page=2" aria-label="다음 페이지로 이동"><span aria-hidden="true">&gt;</span></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </section>
+                    
+                    <!-- 이벤트 유의사항 -->
+                    <section class="terms-section" aria-labelledby="terms-title">
+                        <div class="terms-container">
+                            <details class="terms-details" open>
+                                <summary id="terms-title" class="terms-summary">
+                                    <picture class="img">
+                                        <source srcset="./resources/images/pc/terms_title.png" media="(min-width: 768px)">
+                                        <img src="./resources/images/mo/terms_title.png" alt="이벤트 유의 사항">
+                                    </picture>
+                                </summary>
+                                <div class="terms-content">
+                                    <picture class="img">
+                                        <source srcset="./resources/images/pc/terms_note.png" media="(min-width: 768px)">
+                                        <img src="./resources/images/mo/terms_note.png" alt="이벤트 응모 시 안내">
+                                    </picture>
+                                </div>
+                                <div class="sr-only">
+                                    <h3>이벤트/경품 유의 사항 안내</h3>
+                                    <ul>
+                                        <li>비정상적이거나 불법적인 방법으로 이벤트를 참여하신 경우 당첨이 취소될 수 있습니다.</li>
+                                        <li>1인 1회 참여 가능하며, 기간 내 응모하지 않은 고객은 당첨 대상에서 제외됩니다.</li>
+                                        <li>실제 경품은 당사 사정에 의해 변경될 수 있으며 경품 이미지는 실제 경품 이미지와 다를 수 있습니다.</li>
+                                        <li>5만원 이상의 경품은 제세공과금 22% 부과됩니다.</li>
+                                        <li>당첨자 정보 기재 기한 내에 필요한 정보를 입력하지 않을 시 당첨이 취소됩니다.</li>
+                                        <li>당첨자 선정은 필터링부터 심사까지 공정한 절차에 따라 진행됩니다.</li>
+                                        <li>당첨자 발표 이후, 선정 기준에 대한 개별적인 문의나 응대는 제공되지 않으니 이 점 양해 부탁드립니다.</li>
+                                        <li>이벤트 관련 문의 사항은 hechievent@gmail.com으로 전달해 주시기 바랍니다.</li>
+                                    </ul>
+                                    
+                                    <h3>개인정보 수집 안내</h3>
+                                    <p>본 이벤트 관련 당첨자 취합 업무는 이벤트 시행사 (주)엑스바이브에서 진행합니다.</p>
+                                    <p>개인정보 수신처 : 엑스바이브(https://xvive.xyz/) / 업무시간(월~금) 09:00 - 19:00</p>
+                                    <p>개인정보 수집 항목 : 이름, 연락처(핸드폰 번호), 주소, 인스타그램 계정(아이디)</p>
+                                    <p>개인정보 보유 및 이용 기간 : 수집된 개인정보는 경품발송 이후 내부 방침 및 기타 관련 법령에 의한 정보보호 사유에 따라 최대 1개월간 저장된 후 폐기됩니다.</p>
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 당첨자 확인 버튼 -->
+                <div class="winner-check-container">
+                    <button type="button" aria-label="Check the winners" class="btn-winner-check" onclick="openHatchWinnerModal()">
+                        <picture class="img">
+                            <source srcset="./resources/images/pc//btn_winner_check.png" media="(min-width: 768px)">
+                            <img src="./resources/images/mo/btn_winner_check.png" alt="당첨자 확인하기" />
+                        </picture>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 이벤트 2 패널 -->
+            <div class="tab-panel" 
+                 role="tabpanel" 
+                 id="event2-panel" 
+                 aria-labelledby="event2-tab" 
+                 hidden>
+                 <div class="liner">
+                    <div class="event-content">
+                        comming soon...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 이벤트 3 패널 -->
+            <div class="tab-panel" 
+                 role="tabpanel" 
+                 id="event3-panel" 
+                 aria-labelledby="event3-tab" 
+                 hidden>
+                <div class="liner">
+                    <div class="event-content">
+                    comming soon...2
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- screen : 이벤트 정보 -->
+        <section aria-labelledby="event-info" class="sr-only">
+            <h2>이벤트 안내</h2>
+            <dl>
+              <dt>이벤트 기간</dt>
+              <dd>
+                <time datetime="2025-08-13">2025. 8. 13.(수)</time> 
+                &nbsp;~&nbsp; 
+                <time datetime="2025-08-27">2025. 8. 27.(수)</time>
+              </dd>
+      
+              <dt>당첨자 발표</dt>
+              <dd>
+                <strong>우수 콘텐츠</strong> (20명): 홈페이지 발표 후 개별 DM 발송<br />
+                <strong>참여 콘텐츠</strong> (300명): DM 발표
+              </dd>
+            </dl>
+
+            <h2>참여 방법</h2>
+            <ol>
+                <li>
+                    <p>서울 곳곳에 있는 <strong>해치와 소울프렌즈 사진 찍기</strong><br />
+                    <small>(실물 해치, 해치 굿즈, 조형물, 현수막 등)</small></p>
+                </li>
+                <li><p>필수 <strong>해시태그</strong>와 함께 <strong>인스타그램 게시물 업로드</strong></p></li>
+                <li><p>해치 계정 <strong>팔로우</strong>하기</p></li>
+            </ol>
+            <p>
+                <small>※ 이벤트 기간 내 촬영한 사진에 한해 참여 가능<br />
+                ※ 과거 노란 해치 및 해대(심벌) 사진은 제외</small>
+            </p>
+
+            <h2>경품 안내</h2>
+            <ul>
+                <li>
+                    <h3>우수 콘텐츠 (20명)</h3>
+                    <p>네이버페이 포인트 10,000원 권 + 해치포착해치 스탬프가 포함된 콘텐츠 재가공</p>
+                </li>
+                <li>
+                    <h3>참여자 (300명)</h3>
+                    <p>네이버페이 포인트 5,000원 권</p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- 모달 : 참여팝업 이벤트 -->
+    <div class="modal basic-modal " id="hatch-md" role="dialog" aria-modal="true" aria-labelledby="hatch-md-title">
+        <h2 id="hatch-md-title" class="sr-only">게시물 상세 보기</h2>
+        <button rel="modal:close" class="close-modal" aria-label="게시물 닫기"></button>
+        <div class="pop-box">
+            <div class="pop-body">
+                <div class="swiper-container md-hatch-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"> <!--loop-->
+                            <!-- 사진 내용 -->
+                            <article class="post-content" aria-labelledby="post-user-name-1 post-caption-text">
+                                <header class="post-header">
+                                    <div class="user-info">
+                                        <span id="post-user-name-1">name</span>
+                                    </div>
+                                </header>
+                                
+                                <div class="post-media">
+                                    <img src="./resources/images/mo/sample_photo.png" alt="해치 이미지 입니다." loading="lazy">
+                                    <div class="stamp-overlay" aria-hidden="true"></div> <!-- stamp -->
+                                </div>
+                                
+                                <div class="post-interactions">
+                                    <span class="like-button" aria-pressed="false" aria-label="좋아요"></span>
+                                    <span class="likes-count" aria-live="polite">9999</span>
+                                </div>
+                                
+                                <div class="post-caption">
+                                    <p>우연히 남산 갔다가 본 해치! <br />.</p>
+                                    <ul class="hashtags" aria-label="해시태그 목록">
+                                        <li><a href="#">#해치즈기록실</a></li>
+                                        <li><a href="#">#해치포착해치</a></li>
+                                        <li><a href="#">#해치즈</a></li>
+                                    </ul>
+                                    <span class="post-date">2025.08.16</span>
+                                </div>
+                            </article>
+                            <!--// 사진 내용 -->
+                        </div>
+                        <div class="swiper-slide">
+                            <!-- 사진 내용 -->
+                            <article class="post-content" aria-labelledby="post-user-name post-caption-text">
+                                <header class="post-header">
+                                    <div class="user-info">
+                                        <span id="post-user-name-2">Blue Hatch</span>
+                                    </div>
+                                </header>
+                                
+                                <div class="post-media">
+                                    <img src="./resources/images/mo/sample_photo.png" alt="해치 이미지 입니다." loading="lazy">
+                                    <div class="stamp-overlay" aria-hidden="true"></div> <!-- stamp -->
+                                </div>
+                                
+                                <div class="post-interactions">
+                                    <span class="like-button" aria-pressed="false" aria-label="좋아요"></span>
+                                    <span class="likes-count" aria-live="polite">9999</span>
+                                </div>
+                                
+                                <div class="post-caption">
+                                    <p>분홍이 해치<br />귀여운 해치 <br />.</p>
+                                    <ul class="hashtags" aria-label="해시태그 목록">
+                                        <li><a href="#">#해치즈기록실</a></li>
+                                        <li><a href="#">#해치포착해치</a></li>
+                                        <li><a href="#">#해치즈</a></li>
+                                    </ul>
+                                    <span class="post-date">2025.08.16</span>
+                                </div>
+                            </article>
+                            <!--// 사진 내용 -->
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="swiper-button-next hatch-next"></div>
+                <div class="swiper-button-prev hatch-prev"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- 모달 : 당첨자 -->
+    <div class="modal basic-modal winner-md" id="hatch-winner-md" role="dialog" aria-modal="true" aria-labelledby="hatch-winner-title">
+        <h2 id="hatch-winner-title" class="sr-only">당첨자 안내</h2>
+        <button rel="modal:close" class="close-modal" aria-label="모달 닫기"></button>
+        <div class="pop-box">
+            <div class="popup-header" aria-hidden="true">
+                <img src="./resources/images/mo/pop_header.png" alt="해치포착해치 당첨자 안내" />
+            </div>
+
+            <h2 id="popup-title" class="sr-only">해치포착해치 당첨자 안내</h2>
+            <p class="sr-only">
+            참여해주신 모든 분께 진심으로 감사드립니다.
+            우수 콘텐츠 명단을 확인해 주시기 바랍니다.
+            </p>
+            <div class="pop-body">
+                
+
+                <!-- 당첨자 명단 텍스트 -->
+                <ul class="winner-list" aria-label="당첨자 명단">
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                    <li><span>abcdefhijk</span></li>
+                </ul>
+            
+                <p class="info-text">
+                    <img src="./resources/images/mo/pop_txt.png" alt="해당 분들은 개인정보를 꼭 입력해 주세요." />
+                    </p>
+            
+                <div class="button-group">
+                    <a class="btn btn-personal"><img src="./resources/images/mo/btn_personal.png" alt="개인정보 입력"></a>
+                    <a class="btn btn-confirm"><img src="./resources/images/mo/btn_confirm.png" alt="확인"></a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // 탭 기능
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            
+            tabButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    // 모든 탭 버튼에서 active 클래스 제거
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+                    
+                    // 모든 탭 패널 숨기기
+                    tabPanels.forEach(panel => {
+                        panel.classList.remove('active');
+                        panel.setAttribute('hidden', '');
+                    });
+                    
+                    // 클릭한 탭 버튼 활성화
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+                    
+                    // 해당 탭 패널 보이기
+                    const targetPanel = document.getElementById(this.getAttribute('aria-controls'));
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                        targetPanel.removeAttribute('hidden');
+                    }
+                });
+                
+                // 키보드 네비게이션
+                button.addEventListener('keydown', function(e) {
+                    let targetIndex;
+                    
+                    if (e.key === 'ArrowLeft') {
+                        targetIndex = index === 0 ? tabButtons.length - 1 : index - 1;
+                        e.preventDefault();
+                    } else if (e.key === 'ArrowRight') {
+                        targetIndex = index === tabButtons.length - 1 ? 0 : index + 1;
+                        e.preventDefault();
+                    }
+                    
+                    if (targetIndex !== undefined) {
+                        tabButtons[targetIndex].focus();
+                        tabButtons[targetIndex].click();
+                    }
+                });
+            });
+        });
+
+        // 이미지 자세히 보기 모달
+        function openHatchModal() {
+            $('#hatch-md').modal('show');
+            var mdHatchSlider = new Swiper('.md-hatch-swiper', {
+                spaceBetween: 0,
+                loop: true,
+                navigation: {
+                    nextEl: '.hatch-next',
+                    prevEl: '.hatch-prev',
+                },
+            });
+        }
+
+        // 당첨자 모달
+        function openHatchWinnerModal() {
+            $('#hatch-winner-md').modal('show');
+        }
+        // $('#hatch-winner-md').modal('show');
+       
+    </script>
+
+</body>
+</html>
