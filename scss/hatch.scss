@@ -1,0 +1,868 @@
+// 색상 변수
+$gradient-start: #8B5CF6;
+$gradient-end:   #EC4899;
+$text-light:     #FFE4E1;
+$bg-light:       #f9f9f9;
+$txt-gray:       #666;
+$pink:           #ff69a5;
+$green:          #00C851;
+$bg-color:       #fbe1ec;
+
+// 반응형 브레이크포인트
+$breakpoint: 768px;
+
+// 계산
+@function to-vw($value, $base: 430) {
+    @return calc($value / $base) * 100vw;
+}
+
+//  리사이즈 계산
+//  @include resize(font-size, 16); -> 기존 사용법 그대로
+//  @include resize(margin-top, 20, clamp, 16); -> 모바일 기준 20px이고, 375px보다 작아지면 최소 16px까지만 줄임. 최대값은 모바일 기준 2배까지
+@mixin resize($property, $value, $mode: clamp, $min: null, $base: 430, $max: null) {
+    $actual-min: if($min != null, $min, $value);
+    $actual-max: if($max != null, $max, $value * 2);
+
+    @if $mode == clamp {
+        #{$property}: clamp(#{$actual-min}px, to-vw($value, $base), #{$actual-max}px);
+    } @else if $mode == vw {
+        #{$property}: to-vw($value, $base);
+    } @else {
+        @warn "지원되지 않는 모드입니다. 'clamp' 또는 'vw'를 사용하세요.";
+    }
+}
+
+
+.event-container {
+    max-width: 860px;
+    margin: 0 auto;
+    background: $bg-color;;
+    min-height: 100vh;
+
+    // 공통
+    .event-header,
+    .event-content {
+        img {
+            width: 100%;
+        }
+    }
+
+    // 헤더
+    .event-header {
+        text-align: center;
+        position: relative;
+
+        .main-character {
+            display: flex;
+            .img {padding: 0; line-height: 0;}
+        }
+   
+    }
+
+    // 탭 네비
+    .tab-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        .tab-list {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .tab-button {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            @include resize(height, 50, clamp, 40);
+            background-size: cover;
+            background-position: center center;
+            &:first-child{
+                @include resize(width, 144);
+                background-image: url('../images/mo/event1_tab.png');
+            }
+            &:nth-child(2){
+                @include resize(width, 144);
+                background-image: url('../images/mo/event2_tab.png');
+            }
+            &:nth-child(3){
+                @include resize(width, 142);
+                background-image: url('../images/mo/event3_tab.png');
+            }
+            &.active {
+                &:first-child{
+                    background-image: url('../images/mo/event1_tab_on.png');
+                }
+                &:nth-child(2){
+                    background-image: url('../images/mo/event2_tab_on.png');
+                }
+                &:nth-child(3){
+                    background-image: url('../images/mo/event3_tab_on.png');
+                }
+            }
+            @media (min-width: 1024px) {
+                @include resize(height, 100, clamp, null, 1024);
+                &:first-child{
+                    @include resize(width, 214, clamp, null, 1024);
+                    background-image: url('../images/pc/event1_tab.png');
+                }
+                &:nth-child(2){
+                    @include resize(width, 215, clamp, null, 1024);
+                    background-image: url('../images/pc/event2_tab.png');
+                }
+                &:nth-child(3){
+                    @include resize(width, 211, clamp, null, 1024);
+                    background-image: url('../images/pc/event3_tab.png');
+                }
+                &.active {
+                    &:first-child{
+                        background-image: url('../images/pc/event1_tab_on.png');
+                    }
+                    &:nth-child(2){
+                        background-image: url('../images/pc/event2_tab_on.png');
+                    }
+                    &:nth-child(3){
+                        background-image: url('../images/pc/event3_tab_on.png');
+                    }
+                }
+            }
+            @media (min-width: 1200px) {
+                height: 137px;
+                &:first-child{
+                    width: 403px;
+                }
+                &:nth-child(2){
+                    width: 402px;
+                }
+                &:nth-child(3){
+                    width: 396px;
+                }
+            }
+        }
+    }
+
+    .tab-panel {
+        color: #333;
+        &[hidden] { display: none; }
+        @media (min-width: 1024px) {
+            .liner {
+                border: 4px solid #ea69a2
+            }
+        }
+    }
+
+    // 이벤트 이미지영역역
+    .event-content {
+
+        .event-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: $txt-gray;
+        }
+    }
+
+    .event-content-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 20px 0 10px;
+        color: #333;
+    }
+
+    .hashtags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        .hashtag {
+        background: $pink;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 12px;
+        }
+    }
+
+    // 이벤트 상세
+    .event-details {
+        background: white;
+        color: #333;
+        padding: 30px 20px;
+
+        .details-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: $pink;
+        margin-bottom: 20px;
+        }
+
+        .event-period {
+        margin-bottom: 30px;
+
+        .period-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .period-date {
+            font-size: 16px;
+            font-weight: bold;
+            color: $pink;
+            margin-bottom: 10px;
+        }
+
+        .period-note {
+            font-size: 12px;
+            color: $txt-gray;
+            line-height: 1.5;
+        }
+        }
+
+        .participation-method {
+        margin-bottom: 30px;
+
+        .method-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .method-list {
+            list-style: none;
+            padding: 0;
+
+            .method-item {
+            font-size: 12px;
+            color: $txt-gray;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+
+            &::before {
+                content: "•";
+                color: $pink;
+                position: absolute;
+                left: 0;
+            }
+            }
+        }
+        }
+    }
+
+    // 소트
+    .sort-photo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        .sort-status {
+            @include resize(width, 82);
+            line-height: 0;
+            .img {
+                img { width: 100%; }
+            }
+        }
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #000;
+            .sort-latest {
+                &.on { color: #7d0f80 }
+            }
+            // .sort-divider {
+            //     font-size: 15px;
+            // }
+            .sort-like {
+                cursor: pointer;
+                padding: 0;
+                &.on { color: #7d0f80 }
+            }
+             @media (min-width: 768px) {
+                font-size: 24px;
+            }
+        }
+    }
+
+  
+    // 사진
+    .photo-section {
+        background: $bg-color;
+        padding: 20px;
+        
+        .photo-title {
+            display: flex;
+            align-items: center;
+            @include resize(height, 72, clamp, 45);
+            @include resize(padding-left, 60, clamp, 25 );
+            // padding-top: 8px;
+            margin-bottom: 20px;
+            background-image:url('../images/mo/photo_title_bg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            img { width: 100%; }
+            .inner {
+                display: flex;
+                align-items: center;
+            }
+            .counter-label {
+                @include resize(width, 138); //162
+                @include resize(padding-top, 5);
+                max-width: 324px;
+            }
+            .counter-label2 {
+                @include resize(width, 15); //18
+                @include resize(padding-top, 5);
+                max-width: 40px;
+            }
+            .counter-number {
+                display: inline-flex;
+                .number0 { @include resize(width, 17); }
+                .number1 { @include resize(width, 10); }
+                .number2 { @include resize(width, 17); }
+                .number3 { @include resize(width, 17); }
+                .number4 { @include resize(width, 19); }
+                .number5 { @include resize(width, 17); }
+                .number6 { @include resize(width, 17); }
+                .number7 { @include resize(width, 16); }
+                .number8 { @include resize(width, 17); }
+                .number9 { @include resize(width, 16); }
+                margin: 0 5px;
+               
+            }
+            
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+
+            .photo-card {
+                background: #fff;
+                overflow: hidden;
+                padding: 10px;
+
+                .photo-image-container {
+                    aspect-ratio: 1;
+                    background: #e0e0e0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #999;
+                    font-size: 12px;
+
+                    position: relative;
+                    width: 100%;
+                    padding-bottom: 100%;
+                    img {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .photo-info {
+                    padding: 10px 0 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .like-button {
+                        background: none;
+                        border: none;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        cursor: pointer;
+                        .heart-icon {
+                            width: 14px;
+                            height: 13px;
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='28px' height='25px'%3E%3Cpath fill-rule='evenodd' fill='rgb(221, 221, 221)' d='M13.948,24.690 L2.374,13.414 C0.903,11.983 0.092,10.078 0.092,8.049 C0.092,6.022 0.903,4.117 2.374,2.685 C5.316,-0.180 10.448,-0.180 13.388,2.686 L13.948,3.231 L14.507,2.686 C17.450,-0.180 22.578,-0.182 25.523,2.685 L25.523,2.685 L25.523,2.686 C26.993,4.117 27.804,6.024 27.804,8.049 C27.804,10.078 26.993,11.983 25.523,13.415 L13.948,24.690 Z'/%3E%3C/svg%3E");
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-position: left bottom;
+                            &.on {
+                                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='28px' height='25px'%3E%3Cpath fill-rule='evenodd' fill='rgb(255, 105, 165)' d='M13.948,24.690 L2.374,13.414 C0.903,11.983 0.092,10.078 0.092,8.049 C0.092,6.022 0.903,4.117 2.374,2.685 C5.316,-0.180 10.448,-0.180 13.388,2.686 L13.948,3.231 L14.507,2.686 C17.450,-0.180 22.578,-0.182 25.523,2.685 L25.523,2.685 L25.523,2.686 C26.993,4.117 27.804,6.024 27.804,8.049 C27.804,10.078 26.993,11.983 25.523,13.415 L13.948,24.690 Z'/%3E%3C/svg%3E");
+                            }
+                        }
+                    }
+                    .like-count {
+                        font-size: 14px;
+                        color: #000;
+                    }
+                    .photo-date { 
+                        font-size: 14px;
+                        color: #000;
+                    }
+                }
+                 @media (min-width: 768px) {
+                    padding: 15px;
+                }
+            }
+        }
+
+        .page-container {
+            display: flex; 
+            justify-content: center;
+            .btn-load-more {
+                display: block; 
+                @include resize(width, 160);
+                border: none;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                img {width: 100%;}
+            }
+            .pagination { display: none; }
+            .pagination-list {
+                display: flex;
+                margin: 10px auto 30px;
+                color: #666666;
+                li {
+                    margin: 0 2px;
+                    a {
+                        padding: 4px 5px;
+                        font-size: 16px;
+                        &[aria-current='page'] {
+                            color: #000;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                
+            }
+
+            @media (min-width: $breakpoint) {
+                .btn-load-more { display: none; }
+                .pagination { display: block; }
+            }
+        }
+        @media (min-width: 450px) {
+            .photo-title {
+                .counter-label {
+                    @include resize(width, 162);
+                }
+                .counter-label2 {
+                    @include resize(width, 18);
+                }
+                .counter-number {
+                    .number0 { @include resize(width, 20); }
+                    .number1 { @include resize(width, 13); }
+                    .number2 { @include resize(width, 20); }
+                    .number3 { @include resize(width, 20); }
+                    .number4 { @include resize(width, 22); }
+                    .number5 { @include resize(width, 20); }
+                    .number6 { @include resize(width, 20); }
+                    .number7 { @include resize(width, 19); }
+                    .number8 { @include resize(width, 20); }
+                    .number9 { @include resize(width, 19); }
+                }
+            }
+        }
+        @media (min-width: 768px) {
+            padding: 20px 40px;
+            .photo-title {
+                justify-content: center;
+                padding-left: 0;
+                @include resize(height, 60);
+                background-image:url('../images/pc/photo_title_bg_middle.png');
+                .counter-label {
+                }
+                .counter-number {
+                }
+                .counter-number {
+                    .number0 { @include resize(width, 20); }
+                    .number1 { @include resize(width, 13); }
+                    .number2 { @include resize(width, 20); }
+                    .number3 { @include resize(width, 20); }
+                    .number4 { @include resize(width, 22); }
+                    .number5 { @include resize(width, 20); }
+                    .number6 { @include resize(width, 20); }
+                    .number7 { @include resize(width, 19); }
+                    .number8 { @include resize(width, 20); }
+                    .number9 { @include resize(width, 19); }
+                }
+            }
+            .photo-grid {
+                // grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 900px) {
+            .photo-title {
+                @include resize(height, 70);
+                
+            }
+
+        }
+        @media (min-width: 1024px) {
+            padding: 20px 83px;
+            .photo-title {
+                @include resize(height, 85);
+                margin-bottom: 40px;
+                background-image:url('../images/pc/photo_title_bg.png');
+                 .counter-label {
+                    @include resize(font-size, 16);
+                }
+                .counter-number {
+                    @include resize(font-size, 28);
+                }
+                .counter-number {
+                    .number0 { @include resize(width, 23); }
+                    .number1 { @include resize(width, 16); }
+                    .number2 { @include resize(width, 23); }
+                    .number3 { @include resize(width, 23); }
+                    .number4 { @include resize(width, 25); }
+                    .number5 { @include resize(width, 23); }
+                    .number6 { @include resize(width, 23); }
+                    .number7 { @include resize(width, 22); }
+                    .number8 { @include resize(width, 23); }
+                    .number9 { @include resize(width, 22); }
+                }
+            }
+            .photo-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 1150px) {
+            .photo-title {
+                @include resize(height, 90);
+            }
+        }
+    }
+
+    // 유의사항
+    .terms-section {
+        .terms-container {
+            padding: 0 15px 15px;
+            .terms-details {
+                border: none;
+
+                .terms-summary {
+                    position: relative;
+                    cursor: pointer;
+                    font-weight: bold;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .img {
+                        line-height: 0;
+                        img { width: 100%;}
+                    }
+
+                    &::after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        margin-top: -6px;
+                        right: 20px;
+                        width: 14px;    
+                        height: 13px;
+                        background-color: #ff69a5;
+                        background-image:url('../images/mo/arrow_expand.png');
+                        background-position: center center;
+                        background-size: contain;
+                        transition: transform 0.3s ease;
+                        @media (min-width: 1024px) {
+                            width: 36px;
+                            height: 30px;
+                            margin-top: -15px;
+                            background-image:url('../images/pc/arrow_expand.png');
+                        }
+                    }
+                }
+
+                &[open] .terms-summary::after {
+                    transform: rotate(180deg);
+                }
+
+                .terms-content {
+                    .img {
+                        line-height: 0;
+                        img { width: 100%;}
+                    }
+                    .terms-title {
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin: 15px 0 10px;
+                    }
+
+                    .terms-list {
+                        list-style: none;
+                        padding: 0;
+
+                        li {
+                        font-size: 12px;
+                        color: $txt-gray;
+                        margin-bottom: 8px;
+                        padding-left: 15px;
+                        position: relative;
+
+                        &::before {
+                            content: "-";
+                            position: absolute;
+                            left: 0;
+                        }
+                        }
+                    }
+
+                    .terms-text {
+                        font-size: 12px;
+                        color: $txt-gray;
+                        margin-bottom: 8px;
+                        line-height: 1.4;
+                    }
+                }
+            }
+            @media (min-width: 768px) {
+                padding: 0 83px 60px;
+            }
+        }
+
+        
+    }
+
+    // 당첨자 버튼
+    .winner-check-container {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+        .btn-winner-check {
+            @include resize(width, 250);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            img { width: 100%; }
+        }
+        @media (min-width: 768px) {
+            margin-top: 40px;
+            padding-bottom: 50px;
+        }
+    }
+
+    // 반응형
+    // @media (max-width: 480px) {
+    //     max-width: 100%;
+
+    //     .event-title { font-size: 28px; }
+    //     .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    // }
+     @media (min-width: 768px) {
+        max-width: 1920px;
+    }
+}
+
+
+// 레이어팝업
+.basic-modal {
+    // width: 1200px;
+    width: 95%;
+    max-width: 642px;
+    padding: 0;
+    border-radius: 0;
+    a.close-modal {
+        top: 8px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+        background-image:url('../images/mo/pop_btn_close.png');
+        z-index: 5;
+    }
+    &.winner-md {   // 당첨자 팝업
+        background-color: #fbe1ec;
+        a.close-modal {
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            background-image:url('../images/mo/pop_btn_close2.png');
+            z-index: 5;
+        }
+        .popup-header {
+            img { width: 100%;}
+        }
+        .info-text {
+            margin-top: 15px;
+            img {width: 100%;}
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            @include resize(margin-top, 12);
+            @include resize(margin-bottom, 18);
+            .btn {
+                @include resize(width, 126);
+                img { width: 100%;}
+                &.btn-personal {margin-right: 10px;}
+            }
+        }
+    }
+
+    /* slider */
+    .swiper-button-prev {
+        @include resize(top, 250);
+        @include resize(left, -25);
+        @include resize(width, 22,);
+        @include resize(height, 22);
+        background-image:url('../images/mo/slide_prev.png'); 
+        background-size: contain;
+    }
+    .swiper-button-next {
+        @include resize(top, 250);
+        @include resize(right, -25);
+        @include resize(width, 22,);
+        @include resize(height, 22);
+        background-image:url('../images/mo/slide_next.png'); 
+        background-size: contain;
+    }
+    @media (min-width: 620px) {
+        .swiper-button-prev {
+            @include resize(left, -32);
+            top: 370px;
+            left: -44px;
+        }
+        .swiper-button-next {
+            @include resize(right, -32);
+            top: 370px;
+            right: -44px;
+        }
+    }
+    @media (min-width: 768px) {
+        max-width: 874px;
+    }
+}
+
+
+// 모달 안의 내용
+.post-content {
+    .post-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 15px 10px;
+        border-bottom: 1px solid #dbdbdb;
+      
+        .user-info {
+          display: flex;
+          align-items: center;
+          font-size: 17px;
+          font-weight: 600;
+        }
+      }
+      
+      .post-media {
+        position: relative;
+        width: 100%;
+        padding-bottom: 100%;
+      
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      
+        .stamp-overlay {
+          position: absolute;
+          @include resize(right, 10); 
+          @include resize(bottom, 10); 
+          @include resize(width, 101, clamp, 40); 
+          @include resize(height, 95, clamp, 35); 
+          background-image: url('../images/mo/stamp.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          pointer-events: none;
+        }
+      }
+      
+      .post-interactions {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px 10px;
+        color: #000;
+        .like-button {
+            width: 15px;
+            height: 13px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='29px' height='26px'%3E%3Cpath fill-rule='evenodd' fill='rgb(255, 105, 169)' d='M14.350,25.805 L2.363,14.127 C0.840,12.644 0.000,10.672 0.000,8.571 C0.000,6.472 0.840,4.499 2.363,3.016 C5.411,0.048 10.726,0.048 13.771,3.017 L14.350,3.581 L14.930,3.017 C17.978,0.048 23.289,0.046 26.339,3.016 L26.339,3.016 L26.339,3.017 C27.862,4.499 28.701,6.474 28.701,8.571 C28.701,10.672 27.862,12.644 26.339,14.128 L14.350,25.805 Z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        
+        .likes-count {
+            padding-left: 5px;
+            font-weight: 600;
+        }
+      }
+      
+      .post-caption {
+        margin: 0 15px;
+        padding: 10px 0 15px;
+        border-top: 1px solid #adadad;
+      
+        p {
+          margin: 0 0 10px;
+          line-height: 1.4;
+          font-weight: 600;
+        }
+      
+        .hashtags {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+      
+          li a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+          }
+        }
+      
+        .post-date {
+          display: block;
+          color: $txt-gray;
+          margin-top: 10px;
+          font-size: 14px;
+        }
+      }
+}
+
+// 당첨자 리스트트
+.winner-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    @include resize(padding-left, 18);
+    @include resize(padding-right, 18);
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include resize(height, 52);
+        list-style: none;
+        text-align: center;
+        @include resize(font-size, 14);
+        letter-spacing: -0.4px;
+        color: #333;
+        border: 1px solid #b167ad;
+        background-color: #fff;;
+   }
+   @media (min-width: 768px) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
