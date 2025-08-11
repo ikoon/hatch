@@ -293,6 +293,11 @@
 .event-container .photo-section .photo-title .counter-number .number9 {
   width: clamp(16px, 3.7209302326vw, 32px);
 }
+.event-container .photo-section .photo-title .counter-number .sep {
+  width: clamp(10px, 2.3255813953vw, 20px);
+  height: clamp(10px, 2.3255813953vw, 20px);
+  margin-top: clamp(17px, 3.9534883721vw, 34px);
+}
 .event-container .photo-section .photo-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -440,6 +445,11 @@
   .event-container .photo-section .photo-title .counter-number .number9 {
     width: clamp(19px, 4.4186046512vw, 38px);
   }
+  .event-container .photo-section .photo-title .counter-number .sep {
+    width: clamp(12px, 2.7906976744vw, 24px);
+    height: clamp(12px, 2.7906976744vw, 24px);
+    margin-top: clamp(20px, 4.6511627907vw, 40px);
+  }
 }
 @media (min-width: 768px) {
   .event-container .photo-section {
@@ -534,6 +544,11 @@
   }
   .event-container .photo-section .photo-title .counter-number .number9 {
     width: clamp(22px, 5.1162790698vw, 44px);
+  }
+  .event-container .photo-section .photo-title .counter-number .sep {
+    width: clamp(12px, 2.7906976744vw, 24px);
+    height: clamp(12px, 2.7906976744vw, 24px);
+    margin-top: clamp(25px, 5.8139534884vw, 50px);
   }
   .event-container .photo-section .photo-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
