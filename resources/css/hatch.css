@@ -1,8 +1,4 @@
 @charset "UTF-8";
-body {
-  border: 10px solid red;
-}
-
 .event-container {
   max-width: 860px;
   margin: 0 auto;
