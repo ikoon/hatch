@@ -19,9 +19,9 @@ $breakpoint: 768px;
 //  리사이즈 계산
 //  @include resize(font-size, 16); -> 기존 사용법 그대로
 //  @include resize(margin-top, 20, clamp, 16); -> 모바일 기준 20px이고, 375px보다 작아지면 최소 16px까지만 줄임. 최대값은 모바일 기준 2배까지
-@mixin resize($property, $value, $mode: clamp, $min: null, $base: 430) {
+@mixin resize($property, $value, $mode: clamp, $min: null, $base: 430, $max: null) {
     $actual-min: if($min != null, $min, $value);
-    $actual-max: $value * 2;
+    $actual-max: if($max != null, $max, $value * 2);
 
     @if $mode == clamp {
         #{$property}: clamp(#{$actual-min}px, to-vw($value, $base), #{$actual-max}px);
@@ -30,12 +30,7 @@ $breakpoint: 768px;
     } @else {
         @warn "지원되지 않는 모드입니다. 'clamp' 또는 'vw'를 사용하세요.";
     }
-
-    // .event-pc & {
-    //     #{$property}: #{$value * 2}px;
-    // }
 }
-
 
 .event-container {
     max-width: 860px;
@@ -303,46 +298,47 @@ $breakpoint: 768px;
         .photo-title {
             display: flex;
             align-items: center;
-            justify-content: center;
-            @include resize(height, 72);
+            @include resize(height, 72, clamp, 45);
+            @include resize(padding-left, 60, clamp, 25 );
             // padding-top: 8px;
             margin-bottom: 20px;
             background-image:url('../images/mo/photo_title_bg.png');
             background-size: contain;
             background-repeat: no-repeat;
+            img { width: 100%; }
+            .inner {
+                display: flex;
+                align-items: center;
+            }
             .counter-label {
-                font-weight: bold;
-                @include resize(font-size, 15);
-                color: #fff;
-                text-shadow:
-                -1px -1px 0 #7d0f80,
-                1px -1px 0 #7d0f80,
-                -1px  1px 0 #7d0f80,
-                1px  1px 0 #7d0f80;
-                filter:
-                // drop-shadow(-1px -1px 0 #7d0f80) 
-                drop-shadow( 1px -1px 0 #7d0f80)
-                drop-shadow(-1px  1px 0 #7d0f80)
-                drop-shadow( 1px  1px 0 #7d0f80);
+                @include resize(width, 138); //162
+                @include resize(padding-top, 5);
+                max-width: 324px;
+            }
+            .counter-label2 {
+                @include resize(width, 15); //18
+                @include resize(padding-top, 5);
+                max-width: 40px;
             }
             .counter-number {
+                display: inline-flex;
+                .number0 { @include resize(width, 17); }
+                .number1 { @include resize(width, 10); }
+                .number2 { @include resize(width, 17); }
+                .number3 { @include resize(width, 17); }
+                .number4 { @include resize(width, 19); }
+                .number5 { @include resize(width, 17); }
+                .number6 { @include resize(width, 17); }
+                .number7 { @include resize(width, 16); }
+                .number8 { @include resize(width, 17); }
+                .number9 { @include resize(width, 16); }
+                .sep {
+                     @include resize(width, 10); 
+                     @include resize(height, 10); 
+                     @include resize(margin-top, 17); 
+                }
                 margin: 0 5px;
-                font-weight: bold;
-                @include resize(font-size, 30);
-                font-family: Arial, Helvetica, sans-serif;
-                letter-spacing: -0.6px;
-                color: #fbe777;
-                // -webkit-text-stroke: 2px #7d0f80;
-                text-shadow:
-                    -1px -1px 0 #7d0f80,
-                    1px -1px 0 #7d0f80,
-                    -1px  1px 0 #7d0f80,
-                    1px  1px 0 #7d0f80;
-                filter:
-                // drop-shadow(-1px -1px 0 #7d0f80) 
-                drop-shadow( 1px -1px 0 #7d0f80)
-                drop-shadow(-1px  1px 0 #7d0f80)
-                drop-shadow( 1px  1px 0 #7d0f80);
+               
             }
             
         }
@@ -455,16 +451,55 @@ $breakpoint: 768px;
                 .pagination { display: block; }
             }
         }
-        @media (min-width: 768px) {
-            padding: 20px 83px;
+        @media (min-width: 450px) {
             .photo-title {
-                @include resize(height, 70);
-                background-image:url('../images/pc/photo_title_bg.png');
                 .counter-label {
-                    @include resize(font-size, 12);
+                    @include resize(width, 162);
+                }
+                .counter-label2 {
+                    @include resize(width, 18);
                 }
                 .counter-number {
-                    @include resize(font-size, 24);
+                    .number0 { @include resize(width, 20); }
+                    .number1 { @include resize(width, 13); }
+                    .number2 { @include resize(width, 20); }
+                    .number3 { @include resize(width, 20); }
+                    .number4 { @include resize(width, 22); }
+                    .number5 { @include resize(width, 20); }
+                    .number6 { @include resize(width, 20); }
+                    .number7 { @include resize(width, 19); }
+                    .number8 { @include resize(width, 20); }
+                    .number9 { @include resize(width, 19); }
+                    .sep {
+                        @include resize(width, 12); 
+                        @include resize(height, 12); 
+                        @include resize(margin-top, 20); 
+                    }
+                }
+            }
+        }
+        @media (min-width: 768px) {
+            padding: 20px 40px;
+            .photo-title {
+                justify-content: center;
+                padding-left: 0;
+                @include resize(height, 60);
+                background-image:url('../images/pc/photo_title_bg_middle.png');
+                .counter-label {
+                }
+                .counter-number {
+                }
+                .counter-number {
+                    .number0 { @include resize(width, 20); }
+                    .number1 { @include resize(width, 13); }
+                    .number2 { @include resize(width, 20); }
+                    .number3 { @include resize(width, 20); }
+                    .number4 { @include resize(width, 22); }
+                    .number5 { @include resize(width, 20); }
+                    .number6 { @include resize(width, 20); }
+                    .number7 { @include resize(width, 19); }
+                    .number8 { @include resize(width, 20); }
+                    .number9 { @include resize(width, 19); }
                 }
             }
             .photo-grid {
@@ -472,10 +507,18 @@ $breakpoint: 768px;
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
+        @media (min-width: 900px) {
+            .photo-title {
+                @include resize(height, 70);
+                
+            }
+
+        }
         @media (min-width: 1024px) {
             padding: 20px 83px;
             .photo-title {
                 @include resize(height, 85);
+                margin-bottom: 40px;
                 background-image:url('../images/pc/photo_title_bg.png');
                  .counter-label {
                     @include resize(font-size, 16);
@@ -483,15 +526,36 @@ $breakpoint: 768px;
                 .counter-number {
                     @include resize(font-size, 28);
                 }
+                .counter-number {
+                    .number0 { @include resize(width, 23); }
+                    .number1 { @include resize(width, 16); }
+                    .number2 { @include resize(width, 23); }
+                    .number3 { @include resize(width, 23); }
+                    .number4 { @include resize(width, 25); }
+                    .number5 { @include resize(width, 23); }
+                    .number6 { @include resize(width, 23); }
+                    .number7 { @include resize(width, 22); }
+                    .number8 { @include resize(width, 23); }
+                    .number9 { @include resize(width, 22); }
+                    .sep {
+                        @include resize(width, 12); 
+                        @include resize(height, 12); 
+                        @include resize(margin-top, 25); 
+                    }
+                }
             }
             .photo-grid {
-                // grid-template-columns: 1fr 1fr;x
                 grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 1150px) {
+            .photo-title {
+                @include resize(height, 90);
             }
         }
     }
 
-    // 유의사항항
+    // 유의사항
     .terms-section {
         .terms-container {
             padding: 0 15px 15px;
