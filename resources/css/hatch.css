@@ -784,17 +784,6 @@
   height: 100%;
   object-fit: cover;
 }
-.post-content .post-media .stamp-overlay {
-  position: absolute;
-  right: clamp(10px, 2.3255813953vw, 20px);
-  bottom: clamp(10px, 2.3255813953vw, 20px);
-  width: clamp(40px, 23.488372093vw, 202px);
-  height: clamp(35px, 22.0930232558vw, 190px);
-  background-image: url("../images/mo/stamp.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  pointer-events: none;
-}
 .post-content .post-interactions {
   display: flex;
   align-items: center;
@@ -852,13 +841,18 @@
 }
 
 .noti-winner {
-  padding: 120px 0;
+  padding: 80px 0 100px;
   text-align: center;
   font-size: 20px;
+}
+.noti-winner img {
+  width: 100%;
+  max-width: 860px;
 }
 @media (min-width: 768px) {
   .noti-winner {
     font-size: 28px;
+    padding: 100px 0 120px;
   }
 }
 
