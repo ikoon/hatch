@@ -305,7 +305,7 @@
                  hidden>
                  <div class="liner">
                     <div class="event-content">
-                        comming soon...
+                        <div class="coming-soon"><img src="./resources/images/mo/img_coming.png" alt="준비중" /></div>
                     </div>
                 </div>
             </div>
@@ -318,7 +318,7 @@
                  hidden>
                 <div class="liner">
                     <div class="event-content">
-                    comming soon...2
+                        <div class="coming-soon"><img src="./resources/images/mo/img_coming.png" alt="준비중" /></div>
                     </div>
                 </div>
             </div>
@@ -456,39 +456,47 @@
         <button rel="modal:close" class="close-modal" aria-label="모달 닫기"></button>
         <div class="pop-box">
             <div class="popup-header" aria-hidden="true">
-                <img src="./resources/images/mo/pop_header.png" alt="해치포착해치 당첨자 안내" />
+                <img src="./resources/images/mo/pop_header.png" alt="" />
             </div>
 
             <h2 id="popup-title" class="sr-only">해치포착해치 당첨자 안내</h2>
             <p class="sr-only">
             참여해주신 모든 분께 진심으로 감사드립니다.
-            우수 콘텐츠 명단을 확인해 주시기 바랍니다.
             </p>
             <div class="pop-body">
-                
+                <!-- 당첨자 발표 예정 --> 
+                <section id="state-upcoming" aria-labelledby="heading-upcoming">   <!-- 안보임: hidden, 보임 : hidden 제거 -->
+                    <h3 id="heading-upcoming" class="sr-only">당첨자 발표 예정</h3>
+                    <p class="noti-winner">
+                        당첨자 발표는<br>추후 안내될 예정입니다.
+                    </p>
+                </section>
 
                 <!-- 당첨자 명단 텍스트 -->
-                <ul class="winner-list" aria-label="당첨자 명단">
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                    <li><span>abcdefhijk</span></li>
-                </ul>
-            
-                <p class="info-text">
-                    <img src="./resources/images/mo/pop_txt.png" alt="해당 분들은 개인정보를 꼭 입력해 주세요." />
-                    </p>
-            
-                <div class="button-group">
-                    <a class="btn btn-personal"><img src="./resources/images/mo/btn_personal.png" alt="개인정보 입력"></a>
-                    <a class="btn btn-confirm"><img src="./resources/images/mo/btn_confirm.png" alt="확인"></a>
-                </div>
+                <section  id="state-winner" aria-labelledby="heading-winner" hidden> <!-- 안보임: hidden, 보임 : hidden 제거 -->
+                    <h3 id="heading-winner" class="sr-only">당첨자 명단</h3>
+                    <div class="head-title"><img src="./resources/images/mo/pop_header_sub.png" alt="우수 콘텐츠 명단을 확인해 주시기 바랍니다." /></div>
+                    <ul class="winner-list">
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                        <li><span>abcdefhijk</span></li>
+                    </ul>
+                    <p class="info-text">
+                        <img src="./resources/images/mo/pop_txt.png" alt="해당 분들은 개인정보를 꼭 입력해 주세요." />
+                        </p>
+                
+                    <div class="button-group">
+                        <a class="btn btn-personal"><img src="./resources/images/mo/btn_personal.png" alt="개인정보 입력"></a>
+                        <a class="btn btn-confirm"><img src="./resources/images/mo/btn_confirm.png" alt="확인"></a>
+                    </div>
+                </section>
             </div>
         </div>
         
