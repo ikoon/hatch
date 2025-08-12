@@ -9,6 +9,11 @@
 .event-container .event-content img {
   width: 100%;
 }
+.event-container .event-header .coming-soon,
+.event-container .event-content .coming-soon {
+  max-width: 860px;
+  margin: 0 auto;
+}
 .event-container .event-header {
   text-align: center;
   position: relative;
@@ -835,6 +840,26 @@
   color: #666;
   margin-top: 10px;
   font-size: 14px;
+}
+
+#state-upcoming[hidden],
+#state-winner[hidden] {
+  display: none;
+}
+
+.head-title img {
+  width: 100%;
+}
+
+.noti-winner {
+  padding: 120px 0;
+  text-align: center;
+  font-size: 20px;
+}
+@media (min-width: 768px) {
+  .noti-winner {
+    font-size: 28px;
+  }
 }
 
 .winner-list {
