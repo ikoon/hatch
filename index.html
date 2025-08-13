@@ -17,14 +17,13 @@
 </head>
 
 <body>
-
     <!-- skip navigation -->
     <a href="#main-content" class="skip-nav">본문 바로가기</a>
     <a href="#navigation" class="skip-nav">메뉴 바로가기</a>
     
     <!-- main contents -->
     <main id="main-content" role="main" class="event-container">
-        
+        <div id="main-top" tabindex="-1"></div>
         <!-- visual image -->
         <header class="event-header">
             <div class="main-character">
@@ -368,6 +367,16 @@
                 </li>
             </ul>
         </section>
+
+        <div id="main-bottom" tabindex="-1"></div>
+
+        <!-- top/bottom 버튼 -->
+         <section class="sky-banner" aria-label="빠른 이동">
+            <div class="inner">
+                <a href="#page-top" class="btn-top" role="button" aria-label="위로 가기"><span class="blind">위로가기</span></a>
+                <a href="#page-bottom" class="btn-bottom" role="button" aria-label="아래로 가기"><span class="blind">아래로 가기</span></a>
+            </div>
+        </section>
     </main>
 
     <!-- 모달 : 참여팝업 이벤트 -->
@@ -447,7 +456,6 @@
                 <div class="swiper-button-prev hatch-prev"></div>
             </div>
         </div>
-        
     </div>
 
     <!-- 모달 : 당첨자 -->
@@ -572,6 +580,34 @@
             $('#hatch-winner-md').modal('show');
         }
         // $('#hatch-winner-md').modal('show');
+
+
+        (function () {
+            const topBtn = document.querySelector('.sky-banner .btn-top');
+            const bottomBtn = document.querySelector('.sky-banner .btn-bottom');
+            const mainTop = document.getElementById('main-top');
+            const mainBottom = document.getElementById('main-bottom');
+            const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const scrollToEl = el => {
+                el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
+                setTimeout(() => el.focus({ preventScroll: true }), prefersReduced ? 0 : 250);
+            };
+
+            const updateDisabled = () => {
+                const rect = document.querySelector('main').getBoundingClientRect();
+                const vh = innerHeight;
+                topBtn.setAttribute('aria-disabled', rect.top >= 0);
+                bottomBtn.setAttribute('aria-disabled', rect.bottom <= vh);
+            };
+
+            topBtn.addEventListener('click', e => { e.preventDefault(); scrollToEl(mainTop); });
+            bottomBtn.addEventListener('click', e => { e.preventDefault(); scrollToEl(mainBottom); });
+
+            addEventListener('scroll', updateDisabled, { passive: true });
+            addEventListener('resize', updateDisabled);
+            updateDisabled();
+        })();
        
     </script>
 
