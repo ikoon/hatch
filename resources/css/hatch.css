@@ -1,8 +1,10 @@
 @charset "UTF-8";
 .event-container {
+  position: relative;
   max-width: 860px;
   margin: 0 auto;
-  background: #fbe1ec;
+  background-color: #ffe2ed;
+  background-image: url("../images/bg_pink.png");
   min-height: 100vh;
 }
 .event-container .event-header img,
@@ -115,6 +117,7 @@
 @media (min-width: 1024px) {
   .event-container .tab-panel .liner {
     border: 4px solid #ea69a2;
+    padding-bottom: 60px;
   }
 }
 .event-container .event-content .event-item {
@@ -234,14 +237,13 @@
   }
 }
 .event-container .photo-section {
-  background: #fbe1ec;
   padding: 20px;
 }
 .event-container .photo-section .photo-title {
   display: flex;
   align-items: center;
   height: clamp(45px, 16.7441860465vw, 144px);
-  padding-left: clamp(25px, 13.9534883721vw, 120px);
+  padding-left: clamp(25px, 24vw, 120px);
   margin-bottom: 20px;
   background-image: url("../images/mo/photo_title_bg.png");
   background-size: contain;
@@ -645,7 +647,7 @@
 }
 @media (min-width: 768px) {
   .event-container .terms-section .terms-container {
-    padding: 0 83px 60px;
+    padding: 0 83px 0;
   }
 }
 .event-container .winner-check-container {
@@ -682,7 +684,7 @@
   /* slider */
 }
 .basic-modal a.close-modal {
-  top: 8px;
+  top: 22px;
   right: 15px;
   width: 30px;
   height: 30px;
@@ -725,36 +727,46 @@
   margin-right: 10px;
 }
 .basic-modal .swiper-button-prev {
-  top: clamp(250px, 58.1395348837vw, 500px);
   left: clamp(-25px, -5.8139534884vw, -50px);
-  width: clamp(22px, 5.1162790698vw, 44px);
+  left: clamp(-25px, -5.8139534884vw, -50px);
   height: clamp(22px, 5.1162790698vw, 44px);
   background-image: url("../images/mo/slide_prev.png");
   background-size: contain;
+  top: 22px;
+  height: 100%;
 }
 .basic-modal .swiper-button-next {
-  top: clamp(250px, 58.1395348837vw, 500px);
   right: clamp(-25px, -5.8139534884vw, -50px);
-  width: clamp(22px, 5.1162790698vw, 44px);
-  height: clamp(22px, 5.1162790698vw, 44px);
   background-image: url("../images/mo/slide_next.png");
   background-size: contain;
+  top: 22px;
+  height: 100%;
 }
 @media (min-width: 620px) {
   .basic-modal .swiper-button-prev {
     left: clamp(-32px, -7.4418604651vw, -64px);
-    top: 370px;
+    top: 20px;
     left: -44px;
+    height: 100%;
   }
   .basic-modal .swiper-button-next {
     right: clamp(-32px, -7.4418604651vw, -64px);
-    top: 370px;
+    top: 20px;
     right: -44px;
+    height: 100%;
+  }
+}
+@media (max-width: 620px) {
+  .basic-modal .swiper-button-prev {
+    width: 15px;
+  }
+  .basic-modal .swiper-button-next {
+    width: 15px;
   }
 }
 @media (min-width: 768px) {
   .basic-modal {
-    max-width: 874px;
+    max-width: 642px;
   }
 }
 
@@ -879,5 +891,76 @@
 @media (min-width: 768px) {
   .winner-list {
     grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.sky-banner {
+  position: fixed;
+  right: max(10px, env(safe-area-inset-right));
+  bottom: max(35px, env(safe-area-inset-bottom));
+  z-index: 1;
+}
+.sky-banner .inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.sky-banner .btn-top,
+.sky-banner .btn-bottom {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  border-radius: 9999px;
+  text-decoration: none;
+  background-size: contain;
+}
+.sky-banner .btn-top:hover,
+.sky-banner .btn-bottom:hover {
+  filter: brightness(1.1);
+}
+@media (min-width: 768px) {
+  .sky-banner .btn-top,
+  .sky-banner .btn-bottom {
+    width: 60px;
+    height: 60px;
+    margin-top: 10px;
+  }
+}
+@media (min-width: 1024px) {
+  .sky-banner .btn-top,
+  .sky-banner .btn-bottom {
+    width: 70px;
+    height: 70px;
+    margin-top: 10px;
+  }
+}
+.sky-banner .btn-top {
+  background-image: url("../images/btn_top.png");
+}
+.sky-banner .btn-bottom {
+  background-image: url("../images//btn_bottom.png");
+}
+.sky-banner [aria-disabled=true] {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+@media (min-width: 768px) {
+  .sky-banner {
+    bottom: max(55px, env(safe-area-inset-bottom));
+  }
+}
+@media (min-width: 1024px) {
+  .sky-banner {
+    bottom: clamp(110px, 25.5813953488vw, 220px);
+    right: max(15px, (100vw - 1200px) / 2 + 10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
   }
 }/*# sourceMappingURL=hatch.css.map */
