@@ -6,7 +6,7 @@ $bg-light:       #f9f9f9;
 $txt-gray:       #666;
 $pink:           #ff69a5;
 $green:          #00C851;
-$bg-color:       #fbe1ec;
+$bg-color:       #ffe2ed; // fbe1ec
 
 // 반응형 브레이크포인트
 $breakpoint: 768px;
@@ -33,9 +33,11 @@ $breakpoint: 768px;
 }
 
 .event-container {
+    position: relative;
     max-width: 860px;
     margin: 0 auto;
-    background: $bg-color;;
+    background-color: $bg-color;
+    background-image: url('../images/bg_pink.png');
     min-height: 100vh;
 
     // 공통
@@ -151,7 +153,8 @@ $breakpoint: 768px;
         &[hidden] { display: none; }
         @media (min-width: 1024px) {
             .liner {
-                border: 4px solid #ea69a2
+                border: 4px solid #ea69a2;
+                padding-bottom: 60px;
             }
         }
     }
@@ -296,14 +299,15 @@ $breakpoint: 768px;
   
     // 사진
     .photo-section {
-        background: $bg-color;
+        // background: $bg-color;
         padding: 20px;
         
         .photo-title {
             display: flex;
             align-items: center;
             @include resize(height, 72, clamp, 45);
-            @include resize(padding-left, 60, clamp, 25 );
+            // @include resize(padding-left, 60, clamp, 25 );
+            padding-left: clamp(25px, 24vw, 120px);
             // padding-top: 8px;
             margin-bottom: 20px;
             background-image:url('../images/mo/photo_title_bg.png');
@@ -644,7 +648,7 @@ $breakpoint: 768px;
                 }
             }
             @media (min-width: 768px) {
-                padding: 0 83px 60px;
+                padding: 0 83px 0;
             }
         }
 
@@ -690,7 +694,8 @@ $breakpoint: 768px;
     padding: 0;
     border-radius: 0;
     a.close-modal {
-        top: 8px;
+        // top: 8px;
+        top: 22px;
         right: 15px;
         width: 30px;
         height: 30px;
@@ -729,35 +734,50 @@ $breakpoint: 768px;
 
     /* slider */
     .swiper-button-prev {
-        @include resize(top, 250);
+        // @include resize(top, 250);
         @include resize(left, -25);
-        @include resize(width, 22,);
+        left: clamp(-25px, -5.8139534884vw, -50px);
+        // @include resize(width, 22,);
         @include resize(height, 22);
         background-image:url('../images/mo/slide_prev.png'); 
         background-size: contain;
+        top: 22px;
+        height: 100%;
     }
     .swiper-button-next {
-        @include resize(top, 250);
+        // @include resize(top, 250);
         @include resize(right, -25);
-        @include resize(width, 22,);
-        @include resize(height, 22);
+        // @include resize(width, 22,);
+        // @include resize(height, 22);
         background-image:url('../images/mo/slide_next.png'); 
         background-size: contain;
+        top: 22px;
+        height: 100%;
     }
     @media (min-width: 620px) {
         .swiper-button-prev {
             @include resize(left, -32);
-            top: 370px;
+            top: 20px;
             left: -44px;
+            height:100%;
         }
         .swiper-button-next {
             @include resize(right, -32);
-            top: 370px;
+            top: 20px;
             right: -44px;
+            height: 100%;
+        }
+    }
+    @media (max-width: 620px) {
+        .swiper-button-prev {
+            width:15px;
+        }
+        .swiper-button-next {
+            width:15px;
         }
     }
     @media (min-width: 768px) {
-        max-width: 874px;
+        max-width: 642px;
     }
 }
 
@@ -901,4 +921,63 @@ $breakpoint: 768px;
    @media (min-width: 768px) {
         grid-template-columns: repeat(5, 1fr);
     }
+}
+
+//sky banner
+.sky-banner {
+    position: fixed;
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(35px, env(safe-area-inset-bottom));
+    z-index: 1;
+    .inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .btn-top,
+    .btn-bottom {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        margin-top: 5px;
+        border-radius: 9999px;
+        text-decoration: none;
+        background-size: contain;
+        &:hover {
+            filter: brightness(1.1);
+        }
+        @media (min-width: 768px) {
+            width: 60px;
+            height: 60px;
+            margin-top: 10px;
+        }
+        @media (min-width: 1024px) {
+            width: 70px;
+            height: 70px;
+            margin-top: 10px;
+        }
+    }
+    .btn-top {
+        background-image:url('../images/btn_top.png'); 
+    }
+    .btn-bottom {
+        background-image:url('../images//btn_bottom.png'); 
+    }
+    [aria-disabled="true"] {
+        // opacity: .5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    @media (min-width: 768px) {
+        bottom: max(55px, env(safe-area-inset-bottom));
+    }
+    @media (min-width: 1024px) {
+        @include resize(bottom, 110);
+        right: calc(max(15px, (100vw - 1200px) / 2 + 10px));
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within { scroll-behavior: auto; }
 }
